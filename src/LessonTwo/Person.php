@@ -1,4 +1,8 @@
 <?php
+namespace LessonTwo;
+
+use DateTime;
+use Exception;
 
 class Person {
     protected $firstName;
@@ -64,12 +68,7 @@ $person_two = new Person('Raul', 'Palacios', '01/02/1990');
 // echo "$fullName is friend with $fullNameTwo";
 
 
-$person_one->setNickname('ca');
-
-//Testing 2nd exercise from lesson two
-//$person_one->setNickname('Medina');
-
-echo "{$person_one->getFullName()}  is friend with {$person_two->getFullName()} and is {$person_one->getAge()} years old";
+$person_one->setNickname('Santi');
 
 
 
