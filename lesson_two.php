@@ -15,6 +15,16 @@ class Person {
         if($this->changedNickName >= 2){
             throw new Exception("You've changed the nickname too many times");
         }
+        
+        if(strlen($nickName) < 3){
+            throw new Exception("Nickname must be at least 2 characters long");
+        }
+
+        if($nickName == $this->firstName || $nickName == $this->lastName){
+            throw new Exception("Nickname cannot be the same as first or last name");
+        }
+
+        
         $this->nickName = $nickName;
         $this->changedNickName++;
     }
