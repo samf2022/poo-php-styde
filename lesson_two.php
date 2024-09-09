@@ -5,10 +5,12 @@ class Person {
     protected $lastName;
     protected $nickName;
     protected $changedNickName = 0;
+    protected $birthDate;
 
-    public function __construct($firstName, $lastName){
+    public function __construct($firstName, $lastName, $birthDate){
         $this->firstName = $firstName;
         $this->lastName = $lastName;
+        $this->birthDate = $birthDate;
     }
 
     public function setNickname($nickName){
@@ -16,7 +18,7 @@ class Person {
             throw new Exception("You've changed the nickname too many times");
         }
         
-        if(strlen($nickName) < 3){
+        if(strlen($nickName) < 2){
             throw new Exception("Nickname must be at least 2 characters long");
         }
 
@@ -36,10 +38,17 @@ class Person {
     public function getFullName() {
         return $this->firstName . ' ' . $this->lastName;
     }
+
+    public function getAge() {
+        $birthDate = new DateTime($this->birthDate);
+        $today = new DateTime();
+        $age = $today->diff($birthDate);
+        return $age->y;
+    }
 }
 
-$person_one = new Person('Santiago', 'Medina');
-$person_two = new Person('Raul', 'Palacios');
+$person_one = new Person('Santiago', 'Medina', '07/03/1994');
+$person_two = new Person('Raul', 'Palacios', '01/02/1990');
 
 
 //Old way
@@ -54,13 +63,13 @@ $person_two = new Person('Raul', 'Palacios');
 
 // echo "$fullName is friend with $fullNameTwo";
 
-echo "{$person_one->getFullName()}  is friend with {$person_two->getFullName()}";
 
-$person_one->setNickname('carlos');
-$person_one->setNickname('roy');
-$person_one->setNickname('leroy');
-$person_one->setNickname('lee');
-echo $person_one->getNickName();
+$person_one->setNickname('ca');
+
+//Testing 2nd exercise from lesson two
+//$person_one->setNickname('Medina');
+
+echo "{$person_one->getFullName()}  is friend with {$person_two->getFullName()} and is {$person_one->getAge()} years old";
 
 
 
